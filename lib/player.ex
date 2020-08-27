@@ -1,16 +1,19 @@
 defmodule ExMon.Player do
-  # validate fields
-  @enforce_keys [:life, :name, :move_rnd, :move_avg, :move_heal]
+  @required_keys [:life, :move_rnd, :move_avg, :move_heal, :name]
+  @max_life 100
 
-  defstruct [:life, :name, :move_rnd, :move_avg, :move_heal]
+  # validate fields
+  @enforce_keys @required_keys
+  # Define struct
+  defstruct @required_keys
 
   def build(name, move_rnd, move_avg, move_heal) do
     %ExMon.Player{
-      name: name,
+      life: @max_life,
       move_rnd: move_rnd,
       move_avg: move_avg,
       move_heal: move_heal,
-      life: 100
+      name: name
     }
   end
 end
